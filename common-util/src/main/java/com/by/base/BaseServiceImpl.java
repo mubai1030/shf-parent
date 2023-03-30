@@ -1,19 +1,14 @@
 package com.by.base;
 
 import com.by.util.CastUtil;
-import com.github.pagehelper.Page;
+import com.by.base.BaseDao;
+import com.by.base.BaseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import javafx.scene.control.TextArea;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.io.Serializable;
 import java.util.Map;
 
-/**
- * @author xiaobai
- * @create 2023-03-30 10:37
- */
 @Transactional
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
 

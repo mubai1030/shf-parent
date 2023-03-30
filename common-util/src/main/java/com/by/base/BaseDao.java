@@ -1,14 +1,12 @@
 package com.by.base;
 
+
 import com.github.pagehelper.Page;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
-/**
- * @author xiaobai
- * @create 2023-03-29 16:53
- */
 public interface BaseDao<T> {
 
     /**
