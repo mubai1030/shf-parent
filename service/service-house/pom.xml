@@ -8,9 +8,10 @@
         <version>1.0</version>
     </parent>
 
+
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-acl</artifactId>
+    <artifactId>service-house</artifactId>
 
     <packaging>war</packaging>
 
@@ -29,7 +30,7 @@
                     </webAppConfig>
                     <httpConnector>
                         <!--端口号，默认 8080-->
-                        <port>7001</port>
+                        <port>7002</port>
                     </httpConnector>
                 </configuration>
             </plugin>

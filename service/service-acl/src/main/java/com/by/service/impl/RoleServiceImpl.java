@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service(interfaceClass = RoleService.class)
-@Transactional
+//@Transactional
 public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
 
     @Autowired

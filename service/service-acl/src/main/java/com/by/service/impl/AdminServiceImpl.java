@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service(interfaceClass = AdminService.class)
-@Transactional
+//@Transactional
 public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminService {
 
     @Autowired

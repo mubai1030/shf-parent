@@ -9,6 +9,7 @@
     </parent>
     <modules>
         <module>service-acl</module>
+        <module>service-house</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 
