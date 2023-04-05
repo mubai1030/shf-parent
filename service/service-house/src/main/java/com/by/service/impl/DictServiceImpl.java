@@ -51,4 +51,24 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
     protected BaseDao<Dict> getEntityDao() {
         return dictDao;
     }
+
+    /*根据父id获取下级列表*/
+    @Override
+    public List<Dict> findListByParentId(Long parentId) {
+        return dictDao.findListByParentId(parentId);
+    }
+
+    @Override
+    public List<Dict> findListByDictCode(String dictCode) {
+        Dict dict = dictDao.getByDictCode(dictCode);
+        if(null == dict) return null;
+        return this.findListByParentId(dict.getId());
+    }
+
+    @Override
+    public String getNameById(Long id) {
+        return dictDao.getNameById(id);
+    }
+
+
 }
