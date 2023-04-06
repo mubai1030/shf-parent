@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.by.dao.CommunityDao">
+    <sql id="columns">
+        id,name,description,province_id,city_id,area_id,plate_id,address,longitude,latitude,build_years,property_price,property_company,developer,build_num,house_num,average_price,create_time,update_time,is_deleted
+    </sql>
+    <resultMap id="Community" type="community">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="description" property="description"></result>
+        <result column="province_id" property="provinceId"></result>
+        <result column="city_id" property="cityId"></result>
+        <result column="area_id" property="areaId"></result>
+        <result column="plate_id" property="plateId"></result>
+        <result column="address" property="address"></result>
+        <result column="longitude" property="longitude"></result>
+        <result column="latitude" property="latitude"></result>
+        <result column="build_years" property="buildYears"></result>
+        <result column="property_price" property="propertyPrice"></result>
+        <result column="property_company" property="propertyCompany"></result>
+        <result column="developer" property="developer"></result>
+        <result column="build_num" property="buildNum"></result>
+        <result column="house_num" property="houseNum"></result>
+        <result column="average_price" property="averagePrice"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+        <result column="is_deleted" property="isDeleted"></result>
+    </resultMap>
+
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            hse_community(name,description,province_id,city_id,area_id,plate_id,address,longitude,latitude,build_years,property_price,property_company,developer,build_num,house_num,average_price)
+        values (
+            #{name},
+            #{description},
+            #{provinceId},
+            #{cityId},
+            #{areaId},
+            #{plateId},
+            #{address},
+            #{longitude},
+            #{latitude},
+            #{buildYears},
+            #{propertyPrice},
+            #{propertyCompany},
+            #{developer},
+            #{buildNum},
+            #{houseNum},
+            #{averagePrice}
+        )
+    </insert>
+
+    <select id="getById" resultMap="Community">
+        select
+            <include refid="columns"></include>
+        from
+            hse_community
+        where
+            id = #{id} and is_deleted = 0
+    </select>
+
+    <update id="update">
+        update
+            hse_community
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="provinceId != null and provinceId != ''">
+                province_id = #{provinceId},
+            </if>
+            <if test="cityId != null and cityId != ''">
+                city_id = #{cityId},
+            </if>
+            <if test="areaId != null and areaId != ''">
+                area_id = #{areaId},
+            </if>
+            <if test="plateId != null and plateId != ''">
+                plate_id = #{plateId},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="longitude != null and longitude != ''">
+                longitude = #{longitude},
+            </if>
+            <if test="latitude != null and latitude != ''">
+                latitude = #{latitude},
+            </if>
+            <if test="buildYears != null and buildYears != ''">
+                build_years = #{buildYears},
+            </if>
+            <if test="propertyPrice != null and propertyPrice != ''">
+                property_price = #{propertyPrice},
+            </if>
+            <if test="propertyCompany != null and propertyCompany != ''">
+                property_company = #{propertyCompany},
+            </if>
+            <if test="developer != null and developer != ''">
+                developer = #{developer},
+            </if>
+            <if test="buildNum != null and buildNum != ''">
+                build_num = #{buildNum},
+            </if>
+            <if test="houseNum != null and houseNum != ''">
+                house_num = #{houseNum},
+            </if>
+            <if test="averagePrice != null and averagePrice != ''">
+                average_price = #{averagePrice},
+            </if>
+            update_time = now()
+        </set>
+        where
+            id = #{id}
+    </update>
+
+    <delete id="delete">
+        update
+            hse_community
+        set
+            is_deleted = 1,update_time = now()
+        where
+            id = #{id}
+    </delete>
+
+
+    <sql id="findPageWhere">
+        <where>
+            <if test="name != null and name != ''">
+--                 name like "%"#{name}"%" and
+                name like concat("%",#{name},"%")
+            </if>
+            <if test="areaId != null and areaId != ''">
+                area_id = #{areaId} and
+            </if>
+            <if test="plateId != null and plateId != ''">
+                plate_id = #{plateId}
+            </if>
+            and is_deleted = 0
+        </where>
+    </sql>
+    <select id="findPage" resultType="Community">
+        select
+            <include refid="columns"></include>
+        from hse_community
+        <include refid="findPageWhere"></include>
+        order by id desc
+    </select>
+
+</mapper>

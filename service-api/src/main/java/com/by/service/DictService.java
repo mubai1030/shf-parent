@@ -14,18 +14,19 @@ public interface DictService extends BaseService<Dict> {
     List<Map<String,Object>> findZnodes(Long id);
 
     /**
-     * 根据上级id获取子节点数据列表
+     * 根据 上级id 获取子节点数据列表
      * @param parentId
      * @return
      */
     List<Dict> findListByParentId(Long parentId);
 
     /**
-     * 根据编码获取子节点数据列表
+     * 根据 编码 获取子节点数据列表
      * @param dictCode
      * @return
      */
     List<Dict> findListByDictCode(String dictCode);
 
+    /*通过字典id，获取字典名称*/
     String getNameById(Long id);
 }
