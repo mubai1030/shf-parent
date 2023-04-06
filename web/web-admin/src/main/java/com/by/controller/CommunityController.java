@@ -43,6 +43,8 @@ public class CommunityController extends BaseController {
     }
 
 
+
+
     @RequestMapping("/edit/{id}")
     public String toEditPage(@PathVariable Long id, Map map){
         Community community = communityService.getById(id);
@@ -52,8 +54,16 @@ public class CommunityController extends BaseController {
         return PAGE_EDIT;
     }
 
+/*
     @GetMapping("/delete/{id}")
     public String delete(Long id) {
+        communityService.delete(id);
+        return LIST_ACTION;
+    }
+*/
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
         communityService.delete(id);
         return LIST_ACTION;
     }

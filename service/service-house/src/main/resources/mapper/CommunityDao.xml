@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.by.dao.CommunityDao">
+ <mapper namespace="com.by.dao.CommunityDao">
     <sql id="columns">
         id,name,description,province_id,city_id,area_id,plate_id,address,longitude,latitude,build_years,property_price,property_company,developer,build_num,house_num,average_price,create_time,update_time,is_deleted
     </sql>
@@ -121,29 +121,28 @@
             id = #{id}
     </update>
 
-    <delete id="delete">
-        update
-            hse_community
-        set
-            is_deleted = 1,update_time = now()
+    <update id="delete">
+        update hse_community set
+			update_time = now() ,
+			is_deleted = 1
         where
-            id = #{id}
-    </delete>
+        id = #{id}
+    </update>
 
 
     <sql id="findPageWhere">
         <where>
             <if test="name != null and name != ''">
 --                 name like "%"#{name}"%" and
-                name like concat("%",#{name},"%")
+                name like concat("%",#{name},"%")  and
             </if>
             <if test="areaId != null and areaId != ''">
                 area_id = #{areaId} and
             </if>
             <if test="plateId != null and plateId != ''">
-                plate_id = #{plateId}
+                plate_id = #{plateId} and
             </if>
-            and is_deleted = 0
+                is_deleted = 0
         </where>
     </sql>
     <select id="findPage" resultType="Community">
@@ -152,6 +151,14 @@
         from hse_community
         <include refid="findPageWhere"></include>
         order by id desc
+    </select>
+
+    <select id="findAll" resultType="Community">
+        select id,name
+        from hse_community
+        where
+        is_deleted = 0
+       order by id desc
     </select>
 
 </mapper>

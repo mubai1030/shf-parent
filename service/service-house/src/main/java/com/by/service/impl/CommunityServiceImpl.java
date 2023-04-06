@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,7 +25,7 @@ import java.util.Map;
  */
 @Service(interfaceClass = CommunityService.class)
 @Transactional
-public class CommunityImpl extends BaseServiceImpl<Community> implements CommunityService {
+public class CommunityServiceImpl extends BaseServiceImpl<Community> implements CommunityService {
 
     @Autowired
     private CommunityDao communityDao;
@@ -56,4 +57,9 @@ public class CommunityImpl extends BaseServiceImpl<Community> implements Communi
         return new PageInfo(page , 10);
     }
 
+
+    @Override
+    public List<Community> findAll() {
+        return communityDao.findAll();
+    }
 }
