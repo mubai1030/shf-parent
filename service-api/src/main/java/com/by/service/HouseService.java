@@ -8,4 +8,5 @@ import com.by.entity.House;
  * @create 2023-04-06 21:11
  */
 public interface HouseService extends BaseService<House> {
+    void publish(Long id, Integer status);
 }

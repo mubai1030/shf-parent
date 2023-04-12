@@ -40,6 +40,12 @@ public class HouseController extends BaseController {
     private final static String PAGE_CREATE = "house/create";
     private final static String PAGE_EDIT = "house/edit";
 
+    @GetMapping("/publish/{id}/{status}")
+    public String publish(@PathVariable Long id,@PathVariable Integer status){
+        houseService.publish(id,status);
+        return LIST_ACTION;
+    }
+
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         houseService.delete(id);

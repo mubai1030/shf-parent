@@ -24,4 +24,12 @@ public class HouseServiceImpl extends BaseServiceImpl<House> implements HouseSer
     protected BaseDao<House> getEntityDao() {
         return houseDao;
     }
+
+    @Override
+    public void publish(Long id, Integer status) {
+        House house = new House();
+        house.setId(id);
+        house.setStatus(status);
+        houseDao.update(house);
+    }
 }

@@ -42,62 +42,60 @@
             id = #{id}
     </select>
 
-    <update id="update">
-        update
-            hse_house
-        set
-            <if test="communityId != null and communityId != ''">
-                community_id = #{communityId},
-            </if>
-            <if test="name != null and name != ''">
-                name = #{name},
-            </if>
-            <if test="description != null and description != ''">
-                description = #{description},
-            </if>
-            <if test="totalPrice != null and totalPrice != ''">
-                total_price = #{totalPrice},
-            </if>
-            <if test="unitPrice != null and unitPrice != ''">
-                unit_price = #{unitPrice},
-            </if>
-            <if test="buildArea != null and buildArea != ''">
-                build_area = #{buildArea},
-            </if>
-            <if test="insideArea != null and insideArea != ''">
-                inside_area = #{insideArea},
-            </if>
-            <if test="houseTypeId != null and houseTypeId != ''">
-                house_type_id = #{houseTypeId},
-            </if>
-            <if test="floorId != null and floorId != ''">
-                floor_id = #{floorId},
-            </if>
-            <if test="buildStructureId != null and buildStructureId != ''">
-                build_structure_id = #{buildStructureId},
-            </if>
-            <if test="directionId != null and directionId != ''">
-                direction_id = #{directionId},
-            </if>
-            <if test="decorationId != null and decorationId != ''">
-                decoration_id = #{decorationId},
-            </if>
-            <if test="houseUseId != null and houseUseId != ''">
-                house_use_id = #{houseUseId},
-            </if>
-            <if test="elevatorRatio != null and elevatorRatio != ''">
-                elevator_ratio = #{elevatorRatio},
-            </if>
-            <if test="listingDate != null and listingDate != ''">
-                listing_date = #{listingDate},
-            </if>
-            <if test="lastTradeDate != null and lastTradeDate != ''">
-                last_trade_date = #{lastTradeDate},
-            </if>
-            <if test="defaultImageUrl != null and defaultImageUrl != ''">
-                default_image_url = #{defaultImageUrl},
-            </if>
-                create_time = now()
+    <update id="update" >
+        update hse_house set
+        <if test="communityId != null">
+            community_id = #{communityId} ,
+        </if>
+        <if test="name != null">
+            name = #{name} ,
+        </if>
+        <if test="description != null">
+            description = #{description} ,
+        </if>
+        <if test="totalPrice != null">
+            total_price = #{totalPrice} ,
+        </if>
+        <if test="unitPrice != null">
+            unit_price = #{unitPrice} ,
+        </if>
+        <if test="buildArea != null">
+            build_area = #{buildArea} ,
+        </if>
+        <if test="insideArea != null">
+            inside_area = #{insideArea} ,
+        </if>
+        <if test="houseTypeId != null">
+            house_type_id = #{houseTypeId} ,
+        </if>
+        <if test="floorId != null">
+            floor_id = #{floorId} ,
+        </if>
+        <if test="buildStructureId != null">
+            build_structure_id = #{buildStructureId} ,
+        </if>
+        <if test="directionId != null">
+            direction_id = #{directionId} ,
+        </if>
+        <if test="decorationId != null">
+            decoration_id = #{decorationId} ,
+        </if>
+        <if test="houseUseId != null">
+            house_use_id = #{houseUseId} ,
+        </if>
+        <if test="elevatorRatio != null">
+            elevator_ratio = #{elevatorRatio} ,
+        </if>
+        <if test="listingDate != null">
+            listing_date = #{listingDate} ,
+        </if>
+        <if test="lastTradeDate != null">
+            last_trade_date = #{lastTradeDate} ,
+        </if>
+        <if test="status != null">
+            status = #{status} ,
+        </if>
+            update_time =  now()
         where
             id = #{id}
     </update>
