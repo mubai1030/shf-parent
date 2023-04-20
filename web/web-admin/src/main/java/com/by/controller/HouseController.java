@@ -2,12 +2,8 @@ package com.by.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.by.base.BaseController;
-import com.by.entity.Community;
-import com.by.entity.Dict;
-import com.by.entity.House;
-import com.by.service.CommunityService;
-import com.by.service.DictService;
-import com.by.service.HouseService;
+import com.by.entity.*;
+import com.by.service.*;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +29,36 @@ public class HouseController extends BaseController {
     private DictService dictService;
     @Reference
     private CommunityService communityService;
+    @Reference
+    private HouseBrokerService houseBrokerService;
+    @Reference
+    private HouseImageService houseImageService;
+    @Reference
+    private HouseUserService houseUserService;
 
     private final static String LIST_ACTION = "redirect:/house";
     private final static String PAGE_INDEX = "house/index";
     private final static String PAGE_SHOW = "house/show";
     private final static String PAGE_CREATE = "house/create";
     private final static String PAGE_EDIT = "house/edit";
+
+
+    @RequestMapping("/{id}")
+    public String toShowPage(@PathVariable Long id, Map map){
+        House house = houseService.getById(id);
+        Community community = communityService.getById(house.getCommunityId());
+        List<HouseBroker> houseBrokerList = houseBrokerService.findListByHouseId(id);
+        List<HouseUser> houseUserList = houseUserService.findListByHouseId(id);
+        List<HouseImage> houseImage1List = houseImageService.findList(id, 1);
+        List<HouseImage> houseImage2List = houseImageService.findList(id, 2);
+        map.put("house",house);
+        map.put("community",community);
+        map.put("houseBrokerList",houseBrokerList);
+        map.put("houseUserList",houseUserList);
+        map.put("houseImage1List",houseImage1List);
+        map.put("houseImage2List",houseImage2List);
+        return PAGE_SHOW;
+    }
 
     @GetMapping("/publish/{id}/{status}")
     public String publish(@PathVariable Long id,@PathVariable Integer status){
@@ -138,6 +158,7 @@ public class HouseController extends BaseController {
         map.put("houseUseList",houseUseList);
         return PAGE_INDEX;
     }
+
 
 
 }

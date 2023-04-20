@@ -43,7 +43,7 @@
             #{name},
             #{phone},
             #{sex},
-            #{idNo},
+            #{idNo}
         )
     </insert>
 
